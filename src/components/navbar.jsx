@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
         <div className="py-2 px-10 flex justify-between items-center bg-black bg-opacity-70 ">
-            <p className="text-darkBlue font-bold text-2xl logo">Blue!</p>
+           <Link to="/"><p className="text-darkBlue font-bold text-2xl logo cursor-pointer">Blue!</p></Link>
             <div className="w-3/6 h-7 relative">
                 <input className="w-full h-full border px-2 focus:outline-none border-lightBlue rounded-md text-xs" type="text" placeholder="Search"/>
                 <svg className="absolute right-4 top-2" width="12" height="12" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
