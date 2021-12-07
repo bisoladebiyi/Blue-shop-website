@@ -14,6 +14,11 @@ module.exports = {
       fontSize: {
         large: '1.2rem'
       },
+      screens: {
+        'mobile': '500px',
+        'bigger': '1030px',
+        'med': '750px'
+      }
     },
   },
   variants: {
