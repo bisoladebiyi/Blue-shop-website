@@ -18,6 +18,7 @@ const Cart = (props) => {
       <div className="h-full w-full grid place-items-center">
         <div className="h-auto w-5/6 p-10 bg-gray-100 rounded">
           { data === [] ? <p>No item in cart!</p> : data.map(({ value, products, id }) => {
+  
             return (
               <div className="flex justify-between mb-10">
                 <div className="w-1/2">
