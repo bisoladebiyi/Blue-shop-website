@@ -5,7 +5,7 @@ import useFetch from "../useFetch";
 import close from "../icons/close.svg"
 import LoadingState from "../components/loading";
 import { Link } from "react-router-dom";
-import addToCart from "../redux/cart/cartAction";
+import {addToCart} from "../redux/cart/cartAction";
 import { connect } from "react-redux";
 
 
