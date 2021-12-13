@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
+import { decreaseAmount, getTotal, increaseAmount, removeFromCart } from "../redux/cart/cartAction";
 
 const Cart = (props) => {
-  const { data, total } = props;
+  const { data, total, increase, decrease } = props;
+  const dispatch = useDispatch()
+  // const [ amount, setAmount ] = useState(0)
+
+  useEffect(()=> {
+    dispatch(getTotal())
+  },[dispatch, data])
 
   return (
     <div className="h-full">
@@ -12,6 +20,7 @@ const Cart = (props) => {
       <div className="h-full w-full grid place-items-center">
         <div className="h-auto w-5/6 p-10 bg-gray-100 rounded">
           { data === [] ? <p>No item in cart!</p> : data.map(({ value, products, id }) => {
+            // let amount = value
             return (
               <div className="flex justify-between mb-10">
                 <div className="w-1/2">
@@ -38,19 +47,18 @@ const Cart = (props) => {
                       <input
                         className="bg-white border-none px-1 w-8 h-full rounded-l-sm focus:outline-none text-sm"
                         type="text"
-                        // onChange={(e) => changeValue(e)}
                         value={value}
                       />
                       <div className="flex flex-col rounded-r-sm overflow-hidden">
                         <button
                           className="bg-darkBlue text-xs text-white font-semibold hover:bg-darker transition h-1/2"
-                          onClick={() => value + 1}
+                          onClick={() => increase(id)}
                         >
                           +
                         </button>
                         <button
                           className="bg-darkBlue text-xs px-2 text-white font-semibold border-t border-gray-200 hover:bg-darker transition h-1/2"
-                          onClick={() => value - 1}
+                          onClick={() => decrease(id)}
                         >
                           -
                         </button>
@@ -59,16 +67,17 @@ const Cart = (props) => {
                   </div>
                   <div>
                     <p className="font-bold text-gray-700 mb-5">TOTAL</p>
-                      <p className="text-gray-700 text-lg font-medium">${products.price * value}</p>
+                      <p className="text-gray-700 text-lg font-medium">${(products.price * value).toFixed(2)}</p>
 
                   </div>
+                  <button onClick={()=> dispatch(removeFromCart(id))}>remove item</button>
                 </div>
               </div>
             );
           })}
           <div className="flex justify-between">
           <p>TOTAL</p>
-          <p className="text-2xl text-gray-700 font-semibold">${total}</p>
+          <p className="text-2xl text-gray-700 font-semibold">${total.toFixed(2)}</p>
 
           </div>
          
@@ -84,5 +93,11 @@ const mapStateToProps = (state) => {
     total: state.totalPrice
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increase: (id) => dispatch(increaseAmount(id)) ,
+    decrease: (id) => dispatch(decreaseAmount(id))
+  };
+};
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
