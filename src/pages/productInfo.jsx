@@ -5,11 +5,13 @@ import useFetch from "../useFetch";
 import close from "../icons/close.svg"
 import LoadingState from "../components/loading";
 import { Link } from "react-router-dom";
+import addToCart from "../redux/cart/cartAction";
+import { connect } from "react-redux";
 
 
 
 
-const ProductInfo = () => {
+const ProductInfo = (props) => {
   const { id } = useParams();
   const url = "https://fakestoreapi.com/products/" + id;
   const { products, isLoading } = useFetch(url);
@@ -19,8 +21,15 @@ const ProductInfo = () => {
   const changeValue = (e) => {
     setValue(e.target.value);
   };
+
+  const data = {
+    id,
+    products,
+    value
+  }
+
   const addToCart = () => {
-    setShowPopUp(true);
+    setShowPopUp(true);    
   };
 
 
@@ -72,7 +81,10 @@ const ProductInfo = () => {
               </div>
               <button
                 className="w-full font-semibold hover:bg-darker transition rounded bg-darkBlue text-white py-3 mt-7 bigger:mt-16"
-                onClick={addToCart}
+                onClick={() => {
+                  addToCart()
+                  props.addToCart(data)
+                }}
               >
                 ADD TO CART
               </button>
@@ -101,8 +113,14 @@ const ProductInfo = () => {
   );
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: data => dispatch(addToCart(data))
+  }
+}
 
 
 
-export default ProductInfo;
+
+export default connect(null, mapDispatchToProps)(ProductInfo);
 

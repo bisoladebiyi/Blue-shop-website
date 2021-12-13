@@ -6,7 +6,7 @@ import SingleProduct from '../components/single-product'
 import useFetch from '../useFetch'
 
 
-const url = "https://fakestoreapi.com/products?limit=9";
+const url = "https://fakestoreapi.com/products?limit=15";
 const Home = () => {
     const { products, isLoading } = useFetch(url);
     return (

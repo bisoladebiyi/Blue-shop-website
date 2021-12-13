@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ count }) => {
   return (
     <div className="py-2 px-3 sm:px-10 flex justify-between items-center bg-black bg-opacity-70 ">
       <Link to="/">
@@ -29,7 +30,7 @@ const Navbar = () => {
           />
         </svg>
       </div>
-      <Link to="/cart"><button>
+      <Link to="/cart"><button className="relative">
         <svg
       
           width="20"
@@ -43,9 +44,16 @@ const Navbar = () => {
             fill="#1687A7"
           />
         </svg>
+        <div className="w-4 h-4 flex items-center justify-center text-xs rounded-xl bg-red-400 absolute bottom-3 left-2 text-white">{count}</div>
       </button></Link>
     </div>
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => {
+  return {
+    count: state.cartCount
+  }
+}
+
+export default connect(mapStateToProps, null)(Navbar);
