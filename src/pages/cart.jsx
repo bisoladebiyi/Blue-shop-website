@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
+
 import Navbar from "../components/navbar";
 import { decreaseAmount, getTotal, increaseAmount, removeFromCart } from "../redux/cart/cartAction";
 
 const Cart = (props) => {
   const { data, total, increase, decrease } = props;
   const dispatch = useDispatch()
-  // const [ amount, setAmount ] = useState(0)
+
 
   useEffect(()=> {
     dispatch(getTotal())
@@ -20,7 +20,7 @@ const Cart = (props) => {
       <div className="h-full w-full grid place-items-center">
         <div className="h-auto w-5/6 p-10 bg-gray-100 rounded">
           { data === [] ? <p>No item in cart!</p> : data.map(({ value, products, id }) => {
-            // let amount = value
+  
             return (
               <div className="flex justify-between mb-10">
                 <div className="w-1/2">
@@ -70,7 +70,7 @@ const Cart = (props) => {
                       <p className="text-gray-700 text-lg font-medium">${(products.price * value).toFixed(2)}</p>
 
                   </div>
-                  <button onClick={()=> dispatch(removeFromCart(id))}>remove item</button>
+                  <button className="text-red-400 text-sm ml-4 h-5" onClick={()=> dispatch(removeFromCart(id))}>remove</button>
                 </div>
               </div>
             );
