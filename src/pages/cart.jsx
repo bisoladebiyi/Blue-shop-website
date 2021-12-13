@@ -70,7 +70,7 @@ const Cart = (props) => {
                       <p className="text-gray-700 text-lg font-medium">${(products.price * value).toFixed(2)}</p>
 
                   </div>
-                  <button onClick={()=> dispatch(removeFromCart(id))}>remove item</button>
+                  <button className="text-red-400 text-sm ml-4 h-5" onClick={()=> dispatch(removeFromCart(id))}>remove</button>
                 </div>
               </div>
             );
