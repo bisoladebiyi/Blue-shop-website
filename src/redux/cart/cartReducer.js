@@ -12,7 +12,6 @@ const reducer = (state = initialState, action) => {
             ...state,
             data: [...state.data, action.payload],
             cartCount: state.data.length,
-            totalPrice: state.totalPrice + (state.data.price * state.data.value)
         }
         default: return state
     }
