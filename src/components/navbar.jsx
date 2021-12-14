@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ count }) => {
+const Navbar = ({ count, search }) => {
   return (
     <div className="py-2 px-3 sm:px-10 flex justify-between items-center bg-black bg-opacity-70 ">
       <Link to="/">
@@ -15,6 +15,7 @@ const Navbar = ({ count }) => {
           className="w-full h-full border px-2 focus:outline-none border-lightBlue rounded-md text-xs"
           type="text"
           placeholder="Search"
+          onChange = {(e) => search(e)}
         />
         <svg
           className="absolute right-4 top-2"

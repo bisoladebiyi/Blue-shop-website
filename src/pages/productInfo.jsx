@@ -7,6 +7,7 @@ import LoadingState from "../components/loading";
 import { Link } from "react-router-dom";
 import {addToCart} from "../redux/cart/cartAction";
 import { connect } from "react-redux";
+import check from '../icons/check.svg'
 
 
 
@@ -91,15 +92,16 @@ const ProductInfo = (props) => {
             </div>
           </div>
           {showPopUp && (
-        <div className="grid grid-cols-1 place-items-center w-full h-screen absolute top-0">
-          <div className="w-3/4 md:w-2/5 h-auto text-center bg-gray-100 shadow-md rounded-md p-5 py-7 relative">
+        <div className="grid grid-cols-1 place-items-center w-full h-screen absolute top-0 shadow-2xl transition">
+          <div className="w-3/4 md:w-2/5 h-auto flex flex-col items-center bg-gray-100 shadow-md rounded-md p-5 py-7 relative">
               <div className="w-full flex justify-end">
               <button className="w-7" onClick={()=> setShowPopUp(false)}><img className="w-full h-full" src={close} alt=""/></button>
-
               </div>
+
+              <div className="bg-green-400 w-20 h-20 rounded-full mb-5"><img src={check} alt="" /></div>
               
             <p className="text-green-600 mb-7">Item added to cart!</p>
-            <Link to="/cart"><button className="w-full text-sm font-semibold hover:bg-darker transition rounded bg-darkBlue text-white py-1">
+            <Link to="/cart" className="w-full"><button className="w-full text-sm font-semibold hover:bg-darker transition rounded bg-darkBlue text-white py-1">
               GO TO CART
             </button></Link>
           </div>
