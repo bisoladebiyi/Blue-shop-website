@@ -24,22 +24,20 @@ const Home = () => {
             Featured Products
           </p>
           <div className="grid place-items-center mt-16">
-            <div className=" w-11/12 sm:w-5/6 lg:w-4/6 grid grid-cols-1 mobile:grid-cols-2 med:grid-cols-3">
-              {products.filter((product) => {
-                      if(searchValue === ""){
-                        return product
-                      }else if(product.title.toLowerCase().includes(searchValue.toLowerCase())) {
-                        return product
-                      }
+            <div className=" w-11/12 grid grid-cols-1 mobile:grid-cols-2 med:grid-cols-4">
+              {products?.filter((product) => {
+                return product.title.toLowerCase().includes(searchValue.toLowerCase())    
               }).map((product) => {
                 const { id } = product;
-                return <Link to={`/product-detail/${id}`}><SingleProduct key={id} product={product}  /></Link>;
+                return <div key={id} >
+                  <Link to={`/product-detail/${id}`}><SingleProduct product={product}  /></Link>
+                  </div>;
               })}
             </div>
             <p className="text-sm text-darkBlue my-10 text-center">Nothing more to see...Go shop! 🙃</p>
           </div>
         </div>
-      )}
+      )} 
         </div>
     )
 }

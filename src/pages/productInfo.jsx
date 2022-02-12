@@ -92,7 +92,7 @@ const ProductInfo = (props) => {
             </div>
           </div>
           {showPopUp && (
-        <div className="grid grid-cols-1 place-items-center w-full h-screen absolute top-0 shadow-2xl transition">
+        <div className="grid grid-cols-1 place-items-center w-full h-screen fixed top-0 shadow-2xl transition">
           <div className="w-3/4 md:w-2/5 h-auto flex flex-col items-center bg-gray-100 shadow-md rounded-md p-5 py-7 relative">
               <div className="w-full flex justify-end">
               <button className="w-7" onClick={()=> setShowPopUp(false)}><img className="w-full h-full" src={close} alt=""/></button>

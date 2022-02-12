@@ -13,12 +13,12 @@ const reducer = (state = initialState, action) => {
         case ADD_TO_CART: return {
             ...state,
             data: [...state.data, action.payload],
-            cartCount: state.data.length,       
+            cartCount: state.data.length + 1,       
         }
         case REMOVE_FROM_CART: return {
             ...state,
             data: state.data.filter((data)=> data.id !== action.payload),
-            cartCount: state.data.length,  
+            cartCount: state.data.length - 1,  
         }
         case CLEAR_CART: return {
             ...state,
